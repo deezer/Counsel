@@ -1,1 +1,1 @@
-include ':sample', ':counsel'
+include ':sample', ':counsel', ':counsel-debug'

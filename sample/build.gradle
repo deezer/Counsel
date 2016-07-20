@@ -41,8 +41,8 @@ dependencies {
     compile 'com.jakewharton:butterknife:8.1.0'
     apt 'com.jakewharton:butterknife-compiler:8.1.0'
 
-    debugCompile project(path: ':counsel', configuration: 'debug')
-    releaseCompile project(path: ':counsel', configuration: 'release')
+    debugCompile project(':counsel-debug')
+    releaseCompile project(':counsel')
 }
 
 

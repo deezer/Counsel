@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.deezer.android.counsel.annotations.RunOnMainThread;
 import com.deezer.android.counsel.annotations.RunOnWorkerThread;
+import com.deezer.android.counsel.annotations.Trace;
 
 import butterknife.BindView;
 
@@ -17,6 +18,7 @@ import static butterknife.ButterKnife.bind;
 /**
  * @author Xavier Gouchet
  */
+@Trace
 public class MultiThreadActivity extends AppCompatActivity {
 
     @BindView(R.id.multi_progress)

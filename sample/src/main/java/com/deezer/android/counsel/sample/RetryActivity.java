@@ -10,6 +10,7 @@ import android.widget.Toast;
 import com.deezer.android.counsel.annotations.RetryOnFailure;
 import com.deezer.android.counsel.annotations.RunOnMainThread;
 import com.deezer.android.counsel.annotations.RunOnWorkerThread;
+import com.deezer.android.counsel.annotations.Trace;
 
 import butterknife.OnClick;
 
@@ -82,6 +83,7 @@ public class RetryActivity extends AppCompatActivity {
             this.result = result;
         }
 
+        @Trace
         @RetryOnFailure(retryCount = 3, retryDelayMs = 1000)
         private String computeResult() {
             if (failureCount-- > 0) {

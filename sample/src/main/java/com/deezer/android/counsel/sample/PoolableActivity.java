@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.deezer.android.counsel.annotations.Trace;
 import com.deezer.android.counsel.interfaces.Poolable;
 
 import java.util.ArrayList;
@@ -78,6 +79,7 @@ public class PoolableActivity extends AppCompatActivity {
         }
     }
 
+    @Trace
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(android.R.id.text1)
