@@ -7,6 +7,7 @@ import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
 import com.deezer.android.counsel.annotations.CachedResult;
+import com.deezer.android.counsel.annotations.Monitored;
 import com.deezer.android.counsel.annotations.Trace;
 
 import butterknife.BindView;
@@ -36,6 +37,7 @@ public class CachedResultActivity extends AppCompatActivity {
     }
 
     @Trace
+    @Monitored
     private void processInput(String value) {
         int input = -1;
         try {

@@ -2,7 +2,6 @@ package com.deezer.android.counsel.aspects;
 
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.annotation.VisibleForTesting;
 import android.util.LruCache;
 
 import com.deezer.android.counsel.annotations.CachedResult;
@@ -27,15 +26,12 @@ import java.util.Arrays;
 public class CachedResultAspect {
 
 
-    private static final int MAX_ENTRY_COUNT = 1024;
-    private final LruCache<JoinPointDescription, Object> CACHE = new LruCache<>(MAX_ENTRY_COUNT);
-
     @Pointcut("execution(@com.deezer.android.counsel.annotations.CachedResult * *(..))")
     public static void annotatedMethod() {
     }
 
     @Around("annotatedMethod()")
-    public Object adviceAround(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    public Object adviceAroundAnnotatedMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         JoinPointDescription key = generateCacheKey(proceedingJoinPoint);
 
         Object result = null;
@@ -72,6 +68,9 @@ public class CachedResultAspect {
 
         return new JoinPointDescription(className, methodName, returnType, proceedingJoinPoint.getArgs());
     }
+
+    private static final int MAX_ENTRY_COUNT = 1024;
+    private final LruCache<JoinPointDescription, Object> CACHE = new LruCache<>(MAX_ENTRY_COUNT);
 
     /**
      * Describes a join point uniquely to be used as key in a LRU map

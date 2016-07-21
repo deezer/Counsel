@@ -6,11 +6,12 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation will generate logs when this method is called
+ * This annotation will monitor the time spent to perform this method, and print the result in the
+ * logcat
  *
  * @author Xavier Gouchet
  */
-@Target({ElementType.CONSTRUCTOR, ElementType.METHOD, ElementType.TYPE})
+@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.CLASS)
-public @interface Trace {
+public @interface Monitored {
 }

@@ -53,12 +53,13 @@ public class PoolableActivity extends AppCompatActivity {
     void onRemoveItem(Item item) {
         int position = items.indexOf(item);
         if (position < 0) return;
-        
+
         items.remove(position);
         adapter.notifyItemRemoved(position);
         item.releaseInstance();
     }
 
+    @Trace
     private static class Item implements Poolable {
 
         static int instancesCount = 0;
@@ -79,7 +80,7 @@ public class PoolableActivity extends AppCompatActivity {
         }
     }
 
-    @Trace
+
     class ItemViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(android.R.id.text1)

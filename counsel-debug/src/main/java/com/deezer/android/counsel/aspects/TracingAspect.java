@@ -10,6 +10,11 @@ import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 
+import static com.deezer.android.counsel.aspects.LoggingUtils.getArguments;
+import static com.deezer.android.counsel.aspects.LoggingUtils.getDeclaringTypeName;
+import static com.deezer.android.counsel.aspects.LoggingUtils.getMethodName;
+import static com.deezer.android.counsel.aspects.LoggingUtils.getTag;
+
 /**
  * @author Xavier Gouchet
  */
@@ -37,29 +42,25 @@ public class TracingAspect {
     public static void constructorWithinAnnotatedType() {
     }
 
-    private static String getTag(JoinPoint jp) {
-        return jp.getThis().getClass().getSimpleName();
-    }
-
-    private static String getMethodName(JoinPoint jp) {
-        return jp.getSignature().getName();
-    }
 
     @Before("annotatedMethod() || methodWithinAnnotatedType()")
     public void adviceBeforeMethod(JoinPoint jp) {
         String tag = getTag(jp);
         String methodName = getMethodName(jp);
+        String arguments = getArguments(jp);
 
-        Log.d(tag, "→ " + methodName + "()");
+        Log.d(tag, "→ " + methodName + arguments);
     }
 
     @Before("annotatedConstructor() || constructorWithinAnnotatedType()")
     public void adviceBeforeConstructor(JoinPoint jp) {
         String tag = getTag(jp);
-        String type = jp.getSignature().getDeclaringTypeName();
+        String type = getDeclaringTypeName(jp);
+        String arguments = getArguments(jp);
 
-        Log.d(tag, "✧ new " + type + "()");
+        Log.d(tag, "✧ new " + type + arguments);
     }
+
 
     @AfterReturning(value = "annotatedMethod() || methodWithinAnnotatedType()", returning = "result")
     public void adviceAfterMethodReturn(JoinPoint jp, Object result) {
@@ -77,7 +78,6 @@ public class TracingAspect {
         String tag = getTag(jp);
         String methodName = getMethodName(jp);
         String throwableName = thrown.getClass().getSimpleName();
-
 
         Log.e(tag, "✝ " + methodName + " ! " + throwableName + " : \"" + thrown.getMessage() + "\"");
     }
