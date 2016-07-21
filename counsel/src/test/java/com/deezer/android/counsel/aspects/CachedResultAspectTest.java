@@ -47,8 +47,8 @@ public class CachedResultAspectTest {
         ProceedingJoinPoint secondPJP = createProceedingJoinPoint("bar", "com.sample.Foo", Result.class, result2, 42);
 
         // When
-        Result firstResult = (Result) aspect.adviceAroundAnnotatedMethod(firstPJP);
-        Result secondResult = (Result) aspect.adviceAroundAnnotatedMethod(secondPJP);
+        Result firstResult = (Result) aspect.getMemoizedResultOrProceed(firstPJP);
+        Result secondResult = (Result) aspect.getMemoizedResultOrProceed(secondPJP);
 
         // Then
         assertThat(firstResult, is(secondResult));
@@ -65,8 +65,8 @@ public class CachedResultAspectTest {
         ProceedingJoinPoint secondPJP = createProceedingJoinPoint("bar", "com.sample.Foo", Result.class, result2, 666);
 
         // When
-        Result firstResult = (Result) aspect.adviceAroundAnnotatedMethod(firstPJP);
-        Result secondResult = (Result) aspect.adviceAroundAnnotatedMethod(secondPJP);
+        Result firstResult = (Result) aspect.getMemoizedResultOrProceed(firstPJP);
+        Result secondResult = (Result) aspect.getMemoizedResultOrProceed(secondPJP);
 
         // Then
         assertThat(firstResult, not(is(secondResult)));
@@ -84,8 +84,8 @@ public class CachedResultAspectTest {
         when(pjp.proceed()).thenReturn(new Result("foo"), new Result("foo"));
 
         // When
-        Result firstResult = (Result) aspect.adviceAroundAnnotatedMethod(pjp);
-        Result secondResult = (Result) aspect.adviceAroundAnnotatedMethod(pjp);
+        Result firstResult = (Result) aspect.getMemoizedResultOrProceed(pjp);
+        Result secondResult = (Result) aspect.getMemoizedResultOrProceed(pjp);
 
         // Then
         assertThat(firstResult != secondResult, is(true));

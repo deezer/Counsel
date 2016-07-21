@@ -18,19 +18,17 @@ import java.util.Map;
 @Aspect
 public class PoolableAspect {
 
-    private Map<String, List<Object>> pools = new Hashtable<>();
-
-
     @Pointcut("call(com.deezer.android.counsel.interfaces.Poolable+.new(..))")
-    public static void callConstructor() {
+    public static void callImplmentationConstructor() {
     }
 
-    @Pointcut("execution(void releaseInstance()) && within(com.deezer.android.counsel.interfaces.Poolable+)")
-    public static void releaseInstanceMethod() {
+
+    @Pointcut("execution(void com.deezer.android.counsel.interfaces.Poolable+.releaseInstance())")
+    public static void executeImplementationReleaseInstance() {
     }
 
-    @Around("callConstructor()")
-    public Object aroundConstructor(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    @Around("callImplmentationConstructor()")
+    public Object getInstanceFromPoolOrProceed(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         String typeName = proceedingJoinPoint.getSignature().getDeclaringTypeName();
 
         List<Object> pool = getPool(typeName);
@@ -42,12 +40,14 @@ public class PoolableAspect {
         }
     }
 
-    @After("releaseInstanceMethod()")
-    public void afterRelease(JoinPoint joinPoint) throws Throwable {
+    @After("executeImplementationReleaseInstance()")
+    public void addInstanceToPool(JoinPoint joinPoint) throws Throwable {
         String typeName = joinPoint.getSignature().getDeclaringTypeName();
         List<Object> pool = getPool(typeName);
         pool.add(joinPoint.getTarget());
     }
+
+    private Map<String, List<Object>> pools = new Hashtable<>();
 
     private List<Object> getPool(String typeName) {
         if (pools.containsKey(typeName)) {

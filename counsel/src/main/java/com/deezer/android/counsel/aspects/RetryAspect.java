@@ -14,11 +14,11 @@ import org.aspectj.lang.annotation.Pointcut;
 public class RetryAspect {
 
     @Pointcut("execution(@com.deezer.android.counsel.annotations.RetryOnFailure * *(..))")
-    public void annotatedMethod() {
+    public void executeAnnotatedMethod() {
     }
 
-    @Around("annotatedMethod() && @annotation(retry)")
-    public Object adviceAround(ProceedingJoinPoint pjp, RetryOnFailure retry) throws Throwable {
+    @Around("executeAnnotatedMethod() && @annotation(retry)")
+    public Object proceedWithRetryOnFailure(ProceedingJoinPoint pjp, RetryOnFailure retry) throws Throwable {
 
         int retryCount = retry.retryCount();
         long retryDelayMs = retry.retryDelayMs();

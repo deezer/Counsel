@@ -48,7 +48,7 @@ public class RetryAspectTest {
         RetryOnFailure retryOnFailure = createRetryOnFailure(3, 0);
 
         // When
-        Object result = aspect.adviceAround(pjp, retryOnFailure);
+        Object result = aspect.proceedWithRetryOnFailure(pjp, retryOnFailure);
 
         // Then
         verify(pjp).proceed();
@@ -64,7 +64,7 @@ public class RetryAspectTest {
         RetryOnFailure retryOnFailure = createRetryOnFailure(3, 0);
 
         // When
-        Object result = aspect.adviceAround(pjp, retryOnFailure);
+        Object result = aspect.proceedWithRetryOnFailure(pjp, retryOnFailure);
 
         // Then
         verify(pjp, times(2)).proceed();
@@ -82,7 +82,7 @@ public class RetryAspectTest {
         // When
         Exception thrown = null;
         try {
-            aspect.adviceAround(pjp, retryOnFailure);
+            aspect.proceedWithRetryOnFailure(pjp, retryOnFailure);
         } catch (Exception e) {
             thrown = e;
         }
@@ -103,7 +103,7 @@ public class RetryAspectTest {
 
         // When
         long start = System.currentTimeMillis();
-        Object result = aspect.adviceAround(pjp, retryOnFailure);
+        Object result = aspect.proceedWithRetryOnFailure(pjp, retryOnFailure);
         long end = System.currentTimeMillis();
 
         // Then

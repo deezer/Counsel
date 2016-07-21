@@ -22,11 +22,11 @@ import static com.deezer.android.counsel.aspects.LoggingUtils.getTag;
 public class TracingAspect {
 
     @Pointcut("execution(@com.deezer.android.counsel.annotations.Trace *.new(..))")
-    public static void annotatedConstructor() {
+    public static void executeAnnotatedConstructor() {
     }
 
     @Pointcut("execution(@com.deezer.android.counsel.annotations.Trace * *(..))")
-    public static void annotatedMethod() {
+    public static void executeAnnotatedMethod() {
     }
 
 
@@ -35,16 +35,16 @@ public class TracingAspect {
     }
 
     @Pointcut("execution(* *(..)) && withinAnnotatedType()")
-    public static void methodWithinAnnotatedType() {
+    public static void executeMethodWithinAnotatedType() {
     }
 
     @Pointcut("execution(*.new(..)) && withinAnnotatedType()")
-    public static void constructorWithinAnnotatedType() {
+    public static void executeConstructorWithinAnnotatedType() {
     }
 
 
-    @Before("annotatedMethod() || methodWithinAnnotatedType()")
-    public void adviceBeforeMethod(JoinPoint jp) {
+    @Before("executeAnnotatedMethod() || executeMethodWithinAnotatedType()")
+    public void logEnteringMethod(JoinPoint jp) {
         String tag = getTag(jp);
         String methodName = getMethodName(jp);
         String arguments = getArguments(jp);
@@ -52,8 +52,8 @@ public class TracingAspect {
         Log.d(tag, "→ " + methodName + arguments);
     }
 
-    @Before("annotatedConstructor() || constructorWithinAnnotatedType()")
-    public void adviceBeforeConstructor(JoinPoint jp) {
+    @Before("executeAnnotatedConstructor() || executeConstructorWithinAnnotatedType()")
+    public void logEnteringConstructor(JoinPoint jp) {
         String tag = getTag(jp);
         String type = getDeclaringTypeName(jp);
         String arguments = getArguments(jp);
@@ -62,8 +62,8 @@ public class TracingAspect {
     }
 
 
-    @AfterReturning(value = "annotatedMethod() || methodWithinAnnotatedType()", returning = "result")
-    public void adviceAfterMethodReturn(JoinPoint jp, Object result) {
+    @AfterReturning(value = "executeAnnotatedMethod() || executeMethodWithinAnotatedType()", returning = "result")
+    public void logReturningMethod(JoinPoint jp, Object result) {
         String tag = getTag(jp);
         String methodName = getMethodName(jp);
         Class returnType = ((MethodSignature) jp.getSignature()).getReturnType();
@@ -73,8 +73,8 @@ public class TracingAspect {
         Log.d(tag, "← " + methodName);
     }
 
-    @AfterThrowing(value = "annotatedMethod() || methodWithinAnnotatedType()", throwing = "thrown")
-    public void adviceAfterMethodThrow(JoinPoint jp, Throwable thrown) {
+    @AfterThrowing(value = "executeAnnotatedMethod() || executeMethodWithinAnotatedType()", throwing = "thrown")
+    public void logThrowingMethod(JoinPoint jp, Throwable thrown) {
         String tag = getTag(jp);
         String methodName = getMethodName(jp);
         String throwableName = thrown.getClass().getSimpleName();

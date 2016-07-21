@@ -20,11 +20,11 @@ public class PerformanceAspect {
 
 
     @Pointcut("execution(@com.deezer.android.counsel.annotations.Monitored * *(..))")
-    public void annotatedMethod() {
+    public void executeAnnotatedMethod() {
     }
 
-    @Around("annotatedMethod() ")
-    public Object adviceAroundMethod(ProceedingJoinPoint pjp) throws Throwable {
+    @Around("executeAnnotatedMethod() ")
+    public Object monitorProceedDuration(ProceedingJoinPoint pjp) throws Throwable {
 
         long startNano = System.nanoTime();
         Object result = pjp.proceed();

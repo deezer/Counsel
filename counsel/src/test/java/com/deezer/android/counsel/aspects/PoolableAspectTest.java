@@ -32,7 +32,7 @@ public class PoolableAspectTest {
         when(pjp.proceed()).thenReturn(value);
 
         // When
-        String result = (String) aspect.aroundConstructor(pjp);
+        String result = (String) aspect.getInstanceFromPoolOrProceed(pjp);
 
         // Then
         verify(pjp).proceed();
@@ -51,9 +51,9 @@ public class PoolableAspectTest {
         when(pjp3.proceed()).thenReturn("spam");
 
         // When
-        String result1 = (String) aspect.aroundConstructor(pjp1);
-        aspect.afterRelease(jp2);
-        String result2 = (String) aspect.aroundConstructor(pjp3);
+        String result1 = (String) aspect.getInstanceFromPoolOrProceed(pjp1);
+        aspect.addInstanceToPool(jp2);
+        String result2 = (String) aspect.getInstanceFromPoolOrProceed(pjp3);
 
         // Then
         verify(pjp1).proceed();
@@ -73,8 +73,8 @@ public class PoolableAspectTest {
         when(pjp2.proceed()).thenReturn(value2);
 
         // When
-        String result1 = (String) aspect.aroundConstructor(pjp1);
-        String result2 = (String) aspect.aroundConstructor(pjp2);
+        String result1 = (String) aspect.getInstanceFromPoolOrProceed(pjp1);
+        String result2 = (String) aspect.getInstanceFromPoolOrProceed(pjp2);
 
         // Then
         verify(pjp1).proceed();

@@ -27,11 +27,11 @@ public class CachedResultAspect {
 
 
     @Pointcut("execution(@com.deezer.android.counsel.annotations.CachedResult * *(..))")
-    public static void annotatedMethod() {
+    public static void executeAnnotatedMethod() {
     }
 
-    @Around("annotatedMethod()")
-    public Object adviceAroundAnnotatedMethod(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+    @Around("executeAnnotatedMethod()")
+    public Object getMemoizedResultOrProceed(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         JoinPointDescription key = generateCacheKey(proceedingJoinPoint);
 
         Object result = null;
