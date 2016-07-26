@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.deezer.android.counsel.annotations.Immutable;
 import com.deezer.android.counsel.annotations.Trace;
 import com.deezer.android.counsel.interfaces.Poolable;
 
@@ -60,11 +61,13 @@ public class PoolableActivity extends AppCompatActivity {
     }
 
     @Trace
+    @Immutable
     private static class Item implements Poolable {
 
         static int instancesCount = 0;
 
         private final int index;
+        private final boolean available = true;
 
         public Item() {
             index = instancesCount++;

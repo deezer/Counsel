@@ -1,4 +1,4 @@
-package com.deezer.android.counsel.aspects.checks;
+package com.deezer.android.counsel.checks;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.DeclareWarning;
@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.DeclareWarning;
  * @author Xavier Gouchet
  */
 @Aspect
-public class CorrectnessHandlingAspect {
+public class CorrectnessHandlingCheck {
 
     @DeclareWarning("get(public !final * *) || set(public !final * *)")
     private static final String ONLY_PRIVATE_FIELDS =

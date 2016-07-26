@@ -1,4 +1,4 @@
-package com.deezer.android.counsel.aspects.checks;
+package com.deezer.android.counsel.checks;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.DeclareWarning;
@@ -8,7 +8,7 @@ import org.aspectj.lang.annotation.DeclareError;
  * @author Xavier Gouchet
  */
 @Aspect
-public class ExceptionHandlingAspect {
+public class ExceptionHandlingCheck {
 
     @DeclareError("handler(java.lang.Error+)")
     public static final String ERROR_HANDLING =

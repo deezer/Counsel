@@ -55,7 +55,6 @@ public class RetryActivity extends AppCompatActivity {
             String result = predictableFailure.computeResult();
             toast("Got a result : " + result);
         } catch (IllegalStateException e) {
-            e.printStackTrace();
             toastError(e.getMessage());
         }
     }

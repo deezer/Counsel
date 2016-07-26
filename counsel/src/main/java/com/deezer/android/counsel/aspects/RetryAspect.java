@@ -9,7 +9,13 @@ import org.aspectj.lang.annotation.Pointcut;
 
 /**
  * TODO Specify the expected Exceptions available for retry in the annotation ?
- * eg : @RetryOnFailure({IOException.class, ParseException.class})
+ * eg : @RetryOnFailure(allow={IOException.class, ParseException.class}, except={SSLException})
+ *
+ * TODO Allow the delay between retries to be randomized ?
+ * eg : @RetryOnFailure(retryDelayMs=200, randomDelay=true)
+ *
+ * TODO Add a timeout on the operation
+ * eg : @RetryOnFailure(timeoutMs = 30)
  *
  * @author Xavier Gouchet
  */

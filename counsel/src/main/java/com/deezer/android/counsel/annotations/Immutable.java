@@ -7,13 +7,10 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * This annotation will monitor the time spent to perform this method, and print the result in the
- * logcat
- *
  * @author Xavier Gouchet
  */
 @Documented
-@Target({ElementType.METHOD})
 @Retention(RetentionPolicy.CLASS)
-public @interface Monitored {
+@Target(ElementType.TYPE)
+public @interface Immutable {
 }

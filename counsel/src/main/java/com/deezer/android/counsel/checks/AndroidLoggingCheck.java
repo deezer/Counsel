@@ -1,4 +1,4 @@
-package com.deezer.android.counsel.aspects.checks;
+package com.deezer.android.counsel.checks;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.DeclareError;
@@ -7,7 +7,7 @@ import org.aspectj.lang.annotation.DeclareError;
  * @author Xavier Gouchet
  */
 @Aspect
-public class AndroidLoggingAspect {
+public class AndroidLoggingCheck {
 
     @DeclareError("get(* java.lang.System.out)")
     public static final String OUT_STREAM = "Should not log directly to System.out " +

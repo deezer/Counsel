@@ -10,6 +10,7 @@ import android.support.annotation.VisibleForTesting;
 import org.aspectj.lang.ProceedingJoinPoint;
 
 /**
+ * TODO allow nonvoid returning methods using Future?
  * @author Xavier Gouchet
  */
 class RunOnThreadAspect {
