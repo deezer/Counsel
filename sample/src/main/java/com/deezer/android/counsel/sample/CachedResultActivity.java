@@ -6,7 +6,7 @@ import android.view.KeyEvent;
 import android.view.inputmethod.EditorInfo;
 import android.widget.TextView;
 
-import com.deezer.android.counsel.annotations.CachedResult;
+import com.deezer.android.counsel.annotations.Cacheable;
 import com.deezer.android.counsel.annotations.Monitored;
 import com.deezer.android.counsel.annotations.Trace;
 
@@ -72,7 +72,7 @@ public class CachedResultActivity extends AppCompatActivity {
      * @param n a positive integer
      * @return the value of factorial n
      */
-    @CachedResult
+    @Cacheable
     private long factorial(long n) {
         if (n < 0) {
             throw new IllegalArgumentException();

@@ -25,9 +25,9 @@ import static org.mockito.Mockito.when;
  */
 @Config(sdk = 18)
 @RunWith(RobolectricTestRunner.class)
-public class CachedResultAspectTest {
+public class CacheableAspectTest {
 
-    private CachedResultAspect aspect;
+    private CacheableAspect aspect;
 
 
     private Result result1;
@@ -35,7 +35,7 @@ public class CachedResultAspectTest {
 
     @Before
     public void setUp() {
-        aspect = new CachedResultAspect();
+        aspect = new CacheableAspect();
         result1 = new Result("eggs");
         result2 = new Result("bacon");
     }

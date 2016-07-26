@@ -16,5 +16,5 @@ import java.lang.annotation.Target;
 @Documented
 @Target({ElementType.METHOD})
 @Retention(RetentionPolicy.CLASS)
-public @interface CachedResult {
+public @interface Cacheable {
 }

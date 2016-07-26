@@ -4,7 +4,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.LruCache;
 
-import com.deezer.android.counsel.annotations.CachedResult;
+import com.deezer.android.counsel.annotations.Cacheable;
 
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.Signature;
@@ -16,17 +16,17 @@ import org.aspectj.lang.reflect.MethodSignature;
 import java.util.Arrays;
 
 /**
- * This Aspect tracks calls to methods annotated with the {@link CachedResult} annotation
+ * This Aspect tracks calls to methods annotated with the {@link Cacheable} annotation
  * <p/>
- * Possible ameliorations : have a per target cache, with configurable size
+ * TODO add TTL to cached methods ?
  *
  * @author Xavier Gouchet
  */
 @Aspect
-public class CachedResultAspect {
+public class CacheableAspect {
 
 
-    @Pointcut("execution(@com.deezer.android.counsel.annotations.CachedResult * *(..))")
+    @Pointcut("execution(@com.deezer.android.counsel.annotations.Cacheable * *(..))")
     public static void executeAnnotatedMethod() {
     }
 
