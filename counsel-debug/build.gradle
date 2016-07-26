@@ -3,7 +3,7 @@ apply plugin: 'android-aspectj'
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "24.0.0"
+    buildToolsVersion "23.0.3"
 
     defaultConfig {
         minSdkVersion 15

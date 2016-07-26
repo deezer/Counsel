@@ -2,6 +2,7 @@ package com.deezer.android.counsel.aspects.checks;
 
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.DeclareWarning;
+import org.aspectj.lang.annotation.DeclareError;
 
 /**
  * @author Xavier Gouchet
@@ -9,7 +10,7 @@ import org.aspectj.lang.annotation.DeclareWarning;
 @Aspect
 public class ExceptionHandlingAspect {
 
-    @DeclareWarning("handler(java.lang.Error+)")
+    @DeclareError("handler(java.lang.Error+)")
     public static final String ERROR_HANDLING =
             "Error and subclasses represent unrecoverable errors. " +
                     "When thrown, they should not be caught by application code.";
