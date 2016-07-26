@@ -8,6 +8,9 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 
 /**
+ * TODO Specify the expected Exceptions available for retry in the annotation ?
+ * eg : @RetryOnFailure({IOException.class, ParseException.class})
+ *
  * @author Xavier Gouchet
  */
 @Aspect

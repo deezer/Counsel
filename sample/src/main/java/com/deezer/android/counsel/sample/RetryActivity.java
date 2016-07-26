@@ -54,7 +54,8 @@ public class RetryActivity extends AppCompatActivity {
         try {
             String result = predictableFailure.computeResult();
             toast("Got a result : " + result);
-        } catch (Exception e) {
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
             toastError(e.getMessage());
         }
     }
@@ -87,7 +88,7 @@ public class RetryActivity extends AppCompatActivity {
         @RetryOnFailure(retryCount = 3, retryDelayMs = 1000)
         private String computeResult() {
             if (failureCount-- > 0) {
-                throw new RuntimeException("An error occured.\n" +
+                throw new IllegalStateException("An error occured.\n" +
                         "Still expecting " + failureCount + " failures");
             }
             return result;
