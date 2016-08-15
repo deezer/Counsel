@@ -18,21 +18,20 @@ To add this library to your build, add the following line to your app's
             maven { url "https://jitpack.io" }
         }
         dependencies {
-            debugCompile 'com.deezer.android:counsel-debug:1.0'
-            releaseCompile 'com.deezer.android:counsel:1.0'
+            compile 'com.github.deezer.Counsel:counsel:master-SNAPSHOT'
+            debugCompile 'com.github.deezer.Counsel:counsel-debug:master-SNAPSHOT'
         }
 
 You'll also need an AspectJ compliant plugin, for instance : 
 
         buildscript {
             repositories {
-                jcenter()
+                maven { url "https://jitpack.io" }
             }
             dependencies {
-                classpath 'com.deezer.gradle.plugin:android-aspectj-plugin:1.0-SNAPSHOT'
+                classpath 'com.github.deezer:Android-Aspectj-Plugin:1.0'
             }
         }
-        
         
         apply plugin: 'android-aspectj'
 
