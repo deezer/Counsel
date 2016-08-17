@@ -9,7 +9,7 @@ public class LoggingUtils {
 
 
     public static String getTag(JoinPoint jp) {
-        return jp.getThis().getClass().getSimpleName();
+        return jp.getSignature().getDeclaringType().getSimpleName();
     }
 
     public static String getMethodName(JoinPoint jp) {

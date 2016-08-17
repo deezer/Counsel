@@ -49,6 +49,14 @@
                 <action android:name="com.deezer.android.counsel.SAMPLE_ACTION"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".TracingActivity"
+            android:label="Tracing">
+            <intent-filter>
+                <action android:name="com.deezer.android.counsel.SAMPLE_ACTION" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
