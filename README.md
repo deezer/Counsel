@@ -122,4 +122,4 @@ the modified / new bahvior.
 
 ## License
 
-This library is distributed under the [MIT License](https://opensource.org/licenses/MIT)
+This library is distributed under the [Apache 2 License](https://opensource.org/licenses/Apache-2.0)
