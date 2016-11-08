@@ -1,15 +1,32 @@
-# Built application files
-/**/build/
-/**/captures
+
+# built application files
+*.ap_
+*.apk
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
 
 # Local configuration file (sdk path, etc)
 local.properties
+.gitattributes
 
-# Gradle generated files
+# Build
+/**/build/
+/**/captures
+*.log
+reports/
 .gradle/
-
-# User-specific configurations
 .idea/
 *.iml
 
-
+# share some idea settings
+!/.idea/misc.xml
+!/.idea/encodings.xml
+!/.idea/vcs.xml

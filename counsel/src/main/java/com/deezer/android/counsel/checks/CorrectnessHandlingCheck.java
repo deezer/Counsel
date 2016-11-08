@@ -10,6 +10,6 @@ import org.aspectj.lang.annotation.DeclareWarning;
 public class CorrectnessHandlingCheck {
 
     @DeclareWarning("get(public !final * *) || set(public !final * *)")
-    private static final String ONLY_PRIVATE_FIELDS =
+    public static final String ONLY_PRIVATE_FIELDS =
             "Don't use non final public, protected or default fields.";
 }
