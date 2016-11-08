@@ -41,6 +41,59 @@ Here's a list of Advices that are available in the app, and how you can
 use them. To avoid any magic from happening without your consent, 
 all our aspects are conditioned by the use of one or more Annotations. 
 
+#### Tracing
+
+Two advices are available for tracing : Trace and Deep Trace.
+
+The first one uses an annotation that can be used on a method or a class definition,
+and will log the execution of every annotated method, or every method an annotated class.
+
+    public class Foo {
+        @Trace
+        private boolean doSomething() {
+            // ...
+            return true
+        }
+    }
+
+Calling this method will generate the following log :
+
+```
+com.example.app D/Foo: → doSomething()
+com.example.app D/Foo: ← doSomething = true
+```
+
+The second one uses an annotation that can be used on a method ,
+and will recursively log every call in the method.
+
+    public class Foo {
+        @DeepTrace
+        private void doSomething() {
+            bar();
+        }
+
+        private void bar() {
+            baz();
+        }
+
+        private void baz() {
+            Date d = new Date(System.currentTimeMillis());
+        }
+    }
+
+Calling `doSomething()` will produce the following log :
+```
+com.example.app V/Foo:   → doSomething()
+com.example.app V/Foo:   → bar()
+com.example.app V/Foo:   → baz()
+com.example.app V/System:   → currentTimeMillis()
+com.example.app V/System:   ← currentTimeMillis = 1478592327633
+com.example.app V/Date:   ✧ new Date(1478592327633)
+com.example.app V/Foo:   ← baz()
+com.example.app V/Foo:   ← bar()
+com.example.app V/Foo:   ← doSomething()
+```
+
 #### Retry
 
 This advice enables you to automatically retry calls to any method up to... 
